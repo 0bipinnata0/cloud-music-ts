@@ -21,3 +21,9 @@
 - src/index.tsx 配置外层 context
 
 ## 1.4 导航栏的开发
+
+# 2. 2023/01/07
+
+## 数据流
+
+1. 安装 npm install @reduxjs/toolkit react-redux 并配置好文件结构
