@@ -19,3 +19,5 @@
 - 路径依次为 src/application/Home/index.ts, src/application/Recommend/index.ts, src/application/Singers/index.ts, src/application/Rank/index.ts
 - src/routes/index.tsx 填写 route 配置
 - src/index.tsx 配置外层 context
+
+## 1.4 导航栏的开发

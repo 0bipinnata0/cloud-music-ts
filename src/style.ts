@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
 */
 *, *::before, *::after {
   box-sizing: border-box;
+  text-decoration: none;
 }
 /*
   2. Remove default margin
