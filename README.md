@@ -35,3 +35,5 @@
 #### 轮播组件开发 src\components\slider\index.tsx
 
 #### 推荐列表开发
+
+### 滚动组件
