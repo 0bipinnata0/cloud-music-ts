@@ -27,3 +27,9 @@
 ## 数据流
 
 1. 安装 npm install @reduxjs/toolkit react-redux 并配置好文件结构
+
+## 组件
+
+### swiper 组件
+
+#### 轮播组件开发 src\components\slider\index.tsx
