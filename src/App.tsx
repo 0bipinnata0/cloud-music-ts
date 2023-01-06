@@ -1,13 +1,16 @@
+import { useRoutes } from "react-router-dom";
 import { IconStyle } from "./assets/iconfont";
+import routes from "./routes";
 import { GlobalStyle } from "./style";
 
 function App() {
+  const element = useRoutes(routes);
   return (
-    <div className="App">
+    <>
       <GlobalStyle />
       <IconStyle />
-      <i className="iconfont">&#xe62b;</i>
-    </div>
+      {element}
+    </>
   );
 }
 
