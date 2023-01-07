@@ -1,7 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { alphaTypes, areaTypes, singerTypes } from "../../api/config";
 import Horizon from "../../baseUI/horizon";
 import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
+import {
+  changeAlpha,
+  changeArea,
+  changeSinger,
+  selectCategory,
+} from "../../store/category/categorySlice";
 import {
   changeEnterLoading,
   changePageCount,
@@ -12,18 +19,16 @@ import { NavContainer } from "./style";
 
 const Singers: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
-  const [singer, setSinger] = useState("");
-  const [area, setArea] = useState("");
-  const [alpha, setAlpha] = useState("");
 
+  const { singer, area, alpha } = useAppSelector(selectCategory);
   const handleUpdateAlpha = (val: string) => {
-    setAlpha(val);
+    dispatch(changeAlpha(val));
   };
   const handleUpdateArea = (val: string) => {
-    setArea(val);
+    dispatch(changeArea(val));
   };
   const handleUpdateSinger = (val: string) => {
-    setSinger(val);
+    dispatch(changeSinger(val));
   };
   const updateDispatch = useCallback(
     (singer: string, area: string, alpha: string) => {

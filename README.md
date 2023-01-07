@@ -65,3 +65,7 @@
 #### 基于 axios 实现防抖，方案来自 https://juejin.cn/post/6968630178163458084#heading-10
 
 - FIXME: 在 singer 列表页面，下拉会触发多次更新,可以去 redux-toolkit 看看有没有合适的方案
+
+#### 将歌手类型 地区 首字母纳入 redux 的管理
+
+- TODO: singer 列表页面上拉刷新的 loading 效果延迟消失
