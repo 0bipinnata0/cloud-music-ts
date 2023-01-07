@@ -6,7 +6,9 @@ export const getAlbumDetailRequest = (id: string | number) => {
     playlist: IPlaylist;
     privileges: Privilege[];
     fromUserCount: number;
-  }>(`/playlist/detail?id=${id}`);
+  }>("/playlist/detail", {
+    params: { id },
+  });
 };
 
 interface Privilege {
