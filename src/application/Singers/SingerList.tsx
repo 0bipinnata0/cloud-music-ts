@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import Loading from "../../baseUI/loading";
 import Scroll from "../../baseUI/scroll";
+import LazyImage from "../../baseUI/LazyImage";
 import { useAppDispatch, useAppSelector } from "../../store";
 import {
   changePageCount,
@@ -11,8 +13,9 @@ import {
   refreshMoreSingerList,
   selectSingerList,
 } from "../../store/singerList/singerListSlice";
+import defaultAvatar from "./singer.png";
 
-import { List, ListItem } from "./style";
+import { List, ListContainer, ListItem } from "./style";
 
 // 渲染函数，返回歌手列表
 const SingerList: React.FC<{
@@ -20,8 +23,13 @@ const SingerList: React.FC<{
   area: string;
   alpha: string;
 }> = ({ singer, area, alpha }) => {
-  const { singerList, pullDownLoading, pullUpLoading, pageCount } =
-    useAppSelector(selectSingerList);
+  const {
+    singerList,
+    pullDownLoading,
+    pullUpLoading,
+    pageCount,
+    enterLoading,
+  } = useAppSelector(selectSingerList);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -52,32 +60,43 @@ const SingerList: React.FC<{
     }
   }
   return (
-    <Scroll
-      pullDownLoading={pullDownLoading}
-      pullDown={pullDownRefreshDispatch}
-      pullUpLoading={pullUpLoading}
-      pullUp={() => {
-        pullUpRefreshDispatch(true, pageCount);
-      }}
-    >
-      <List>
-        {singerList.map((item, index) => {
-          return (
-            <ListItem key={item.accountId + "" + index}>
-              <div className="img_wrapper">
-                <img
-                  src={`${item.picUrl}?param=300x300`}
-                  width="100%"
-                  height="100%"
-                  alt="music"
-                />
-              </div>
-              <span className="name">{item.name}</span>
-            </ListItem>
-          );
-        })}
-      </List>
-    </Scroll>
+    <ListContainer>
+      <Scroll
+        pullDownLoading={pullDownLoading}
+        pullDown={pullDownRefreshDispatch}
+        pullUpLoading={pullUpLoading}
+        pullUp={() => {
+          pullUpRefreshDispatch(true, pageCount);
+        }}
+      >
+        <List>
+          {singerList.map((item, index) => {
+            return (
+              <ListItem key={item.accountId + "" + index}>
+                <div className="img_wrapper">
+                  <LazyImage
+                    src={item.picUrl + "?param=300x300"}
+                    width="100%"
+                    height="100%"
+                    alt="music"
+                    fallback={
+                      <img
+                        width="100%"
+                        height="100%"
+                        src={defaultAvatar}
+                        alt="music"
+                      />
+                    }
+                  />
+                </div>
+                <span className="name">{item.name}</span>
+              </ListItem>
+            );
+          })}
+        </List>
+      </Scroll>
+      {enterLoading && <Loading />}
+    </ListContainer>
   );
 };
 export default SingerList;

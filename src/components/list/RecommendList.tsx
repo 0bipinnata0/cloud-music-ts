@@ -1,5 +1,5 @@
 import React from "react";
-import LazyImage from "./LazyImage";
+import LazyImage from "../../baseUI/LazyImage";
 import defaultAvatar from "./music.png";
 import { ListWrapper, ListItem, List } from "./style";
 import { getCount } from "../../api/utils";

@@ -59,3 +59,5 @@
 #### 接口的 api 变化，调整参数结构
 
 #### 使用 redux-toolkit 完成歌手列表页
+
+#### 添加上下loading的动画以及author的image懒加载

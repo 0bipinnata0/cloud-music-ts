@@ -104,6 +104,7 @@ export const singerListSlice = createSlice({
         state.value.singerList = action.payload;
         state.value.enterLoading = false;
         state.value.pullUpLoading = false;
+        state.value.pullDownLoading = false;
       })
       .addCase(getHotSingerListAsync.rejected, (state) => {
         console.log("热门歌手数据获取失败");
@@ -116,6 +117,8 @@ export const singerListSlice = createSlice({
       .addCase(refreshMoreHotSingerListAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.value.singerList = [...state.value.singerList, ...action.payload];
+        state.value.enterLoading = false;
+        state.value.pullUpLoading = false;
         state.value.pullDownLoading = false;
       })
       .addCase(refreshMoreHotSingerListAsync.rejected, (state) => {
@@ -129,8 +132,9 @@ export const singerListSlice = createSlice({
       .addCase(getSingerListAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.value.singerList = action.payload;
-        state.value.pullDownLoading = false;
         state.value.enterLoading = false;
+        state.value.pullUpLoading = false;
+        state.value.pullDownLoading = false;
       })
       .addCase(getSingerListAsync.rejected, (state) => {
         console.log("歌手数据获取失败");
@@ -143,7 +147,9 @@ export const singerListSlice = createSlice({
       .addCase(refreshMoreSingerListAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.value.singerList = [...state.value.singerList, ...action.payload];
+        state.value.enterLoading = false;
         state.value.pullUpLoading = false;
+        state.value.pullDownLoading = false;
       })
       .addCase(refreshMoreSingerListAsync.rejected, (state) => {
         console.log("歌手数据获取失败");

@@ -7,6 +7,8 @@ import {
 } from "react";
 import BScroll, { Options } from "better-scroll";
 import styled from "styled-components";
+import LoadingV2 from "../loading-v2";
+import Loading from "../loading";
 
 const ScrollContainer = styled.div`
   width: 100%;
@@ -14,18 +16,33 @@ const ScrollContainer = styled.div`
   overflow: hidden;
 `;
 
-// Scroll.defaultProps = {
-//   direction: "vertical",
-//   click: true,
-//   refresh: true,
-//   onScroll: null,
-//   pullUpLoading: false,
-//   pullDownLoading: false,
-//   pullUp: null,
-//   pullDown: null,
-//   bounceTop: true,
-//   bounceBottom: true,
-// };
+const PullUpLoading = styled.div<{
+  show?: boolean;
+}>`
+  display: ${(props) => (props.show ? undefined : "none")};
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  z-index: 100;
+`;
+
+const PullDownLoading = styled.div<{
+  show?: boolean;
+}>`
+  display: ${(props) => (props.show ? undefined : "none")};
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0px;
+  height: 30px;
+  margin: auto;
+  z-index: 100;
+`;
+
 const Scroll = forwardRef<
   { refresh(): void; getBScroll(): BScroll<Options> | undefined },
   Partial<{
@@ -131,10 +148,17 @@ const Scroll = forwardRef<
       }
     },
   }));
-
+  const { pullUpLoading, pullDownLoading } = props;
   return (
     <ScrollContainer className={className} ref={scrollContainerRef}>
       {props.children}
+      <PullUpLoading show={pullUpLoading}>
+        <Loading />
+      </PullUpLoading>
+      {/* 顶部下拉刷新动画 */}
+      <PullDownLoading show={pullDownLoading}>
+        <LoadingV2 />
+      </PullDownLoading>
     </ScrollContainer>
   );
 });

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { alphaTypes, areaTypes, singerTypes } from "../../api/config";
 import Horizon from "../../baseUI/horizon";
+import Loading from "../../baseUI/loading";
 import { useAppDispatch } from "../../store";
 import {
   changeEnterLoading,
@@ -58,9 +59,7 @@ const Singers: React.FC<{}> = (props) => {
           oldVal={alpha}
         />
       </NavContainer>
-      <ListContainer>
-        <SingerList singer={singer} area={area} alpha={alpha} />
-      </ListContainer>
+      <SingerList singer={singer} area={area} alpha={alpha} />
     </div>
   );
 };
