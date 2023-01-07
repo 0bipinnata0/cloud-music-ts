@@ -35,7 +35,7 @@ const ListItem = styled.span`
 type IHorizon = {
   list: {
     key: string;
-    name: string;
+    value: string;
   }[];
   oldVal?: string;
   title: string;
@@ -74,7 +74,7 @@ const Horizon: React.FC<IHorizon> = ({
                 className={`${oldVal === item.key ? "selected" : ""}`}
                 onClick={() => handleClick(item.key)}
               >
-                {item.name}
+                {item.value}
               </ListItem>
             );
           })}

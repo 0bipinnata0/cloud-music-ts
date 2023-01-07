@@ -18,66 +18,40 @@ axiosInstance.interceptors.response.use(
 export { axiosInstance };
 
 // 歌手种类
-export const categoryTypes = [
+export const singerTypes = [
   {
-    name: "华语男",
-    key: "1001",
+    key: "-1",
+    value: "全部",
+  },
+  { key: "1", value: "男歌手" },
+  { key: "2", value: "女歌手" },
+  { key: "3", value: "乐队" },
+];
+// 地区首字母
+export const areaTypes = [
+  {
+    key: "-1",
+    value: "全部",
   },
   {
-    name: "华语女",
-    key: "1002",
+    key: "7",
+    value: "华语",
   },
   {
-    name: "华语组合",
-    key: "1003",
+    key: "96",
+    value: "欧美",
   },
   {
-    name: "欧美男",
-    key: "2001",
+    key: "8",
+    value: "日本",
   },
   {
-    name: "欧美女",
-    key: "2002",
+    key: "16",
+    value: "韩国",
   },
   {
-    name: "欧美组合",
-    key: "2003",
-  },
-  {
-    name: "日本男",
-    key: "6001",
-  },
-  {
-    name: "日本女",
-    key: "6002",
-  },
-  {
-    name: "日本组合",
-    key: "6003",
-  },
-  {
-    name: "韩国男",
-    key: "7001",
-  },
-  {
-    name: "韩国女",
-    key: "7002",
-  },
-  {
-    name: "韩国组合",
-    key: "7003",
-  },
-  {
-    name: "其他男歌手",
-    key: "4001",
-  },
-  {
-    name: "其他女歌手",
-    key: "4002",
-  },
-  {
-    name: "其他组合",
-    key: "4003",
+    key: "0",
+    value: "其他",
   },
 ];
 
@@ -85,106 +59,106 @@ export const categoryTypes = [
 export const alphaTypes = [
   {
     key: "A",
-    name: "A",
+    value: "A",
   },
   {
     key: "B",
-    name: "B",
+    value: "B",
   },
   {
     key: "C",
-    name: "C",
+    value: "C",
   },
   {
     key: "D",
-    name: "D",
+    value: "D",
   },
   {
     key: "E",
-    name: "E",
+    value: "E",
   },
   {
     key: "F",
-    name: "F",
+    value: "F",
   },
   {
     key: "G",
-    name: "G",
+    value: "G",
   },
   {
     key: "H",
-    name: "H",
+    value: "H",
   },
   {
     key: "I",
-    name: "I",
+    value: "I",
   },
   {
     key: "J",
-    name: "J",
+    value: "J",
   },
   {
     key: "K",
-    name: "K",
+    value: "K",
   },
   {
     key: "L",
-    name: "L",
+    value: "L",
   },
   {
     key: "M",
-    name: "M",
+    value: "M",
   },
   {
     key: "N",
-    name: "N",
+    value: "N",
   },
   {
     key: "O",
-    name: "O",
+    value: "O",
   },
   {
     key: "P",
-    name: "P",
+    value: "P",
   },
   {
     key: "Q",
-    name: "Q",
+    value: "Q",
   },
   {
     key: "R",
-    name: "R",
+    value: "R",
   },
   {
     key: "S",
-    name: "S",
+    value: "S",
   },
   {
     key: "T",
-    name: "T",
+    value: "T",
   },
   {
     key: "U",
-    name: "U",
+    value: "U",
   },
   {
     key: "V",
-    name: "V",
+    value: "V",
   },
   {
     key: "W",
-    name: "W",
+    value: "W",
   },
   {
     key: "X",
-    name: "X",
+    value: "X",
   },
   {
     key: "Y",
-    name: "Y",
+    value: "Y",
   },
   {
     key: "Z",
-    name: "Z",
+    value: "Z",
   },
 ];

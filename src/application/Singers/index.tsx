@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { alphaTypes, categoryTypes } from "../../api/config";
+import { singerTypes, areaTypes, alphaTypes } from "../../api/config";
 import Horizon from "../../baseUI/horizon";
 import Scroll from "../../baseUI/scroll";
 import { NavContainer, List, ListItem, ListContainer } from "./style";
@@ -36,24 +36,34 @@ const SingerList = () => {
   );
 };
 const Singers: React.FC<{}> = (props) => {
-  const [category, setCategory] = useState("");
+  const [singer, setSinger] = useState("");
+  const [area, setArea] = useState("");
   const [alpha, setAlpha] = useState("");
 
   const handleUpdateAlpha = (val: string) => {
     setAlpha(val);
   };
+  const handleUpdateArea = (val: string) => {
+    setArea(val);
+  };
 
-  const handleUpdateCategory = (val: string) => {
-    setCategory(val);
+  const handleUpdateSinger = (val: string) => {
+    setSinger(val);
   };
   return (
     <div>
       <NavContainer>
         <Horizon
-          list={categoryTypes}
+          list={singerTypes}
           title={"分类 (默认热门):"}
-          handleClick={handleUpdateCategory}
-          oldVal={category}
+          handleClick={handleUpdateSinger}
+          oldVal={singer}
+        />
+        <Horizon
+          list={areaTypes}
+          title={"地区:"}
+          handleClick={handleUpdateArea}
+          oldVal={area}
         />
         <Horizon
           list={alphaTypes}
