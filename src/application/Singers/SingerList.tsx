@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import Loading from "../../baseUI/loading";
 import Scroll from "../../baseUI/scroll";
 import LazyImage from "../../baseUI/LazyImage";
-import { useAppDispatch, useAppSelector } from "../../store";
 import {
   changePageCount,
   changePullDownLoading,
@@ -16,6 +15,8 @@ import {
 import defaultAvatar from "./singer.png";
 
 import { List, ListContainer, ListItem } from "./style";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
 
 // 渲染函数，返回歌手列表
 const SingerList: React.FC<{

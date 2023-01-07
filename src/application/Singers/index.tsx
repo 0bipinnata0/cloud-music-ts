@@ -1,17 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { alphaTypes, areaTypes, singerTypes } from "../../api/config";
 import Horizon from "../../baseUI/horizon";
-import Loading from "../../baseUI/loading";
-import { useAppDispatch } from "../../store";
+import useAppDispatch from "../../hooks/useAppDispatch";
 import {
   changeEnterLoading,
   changePageCount,
   getSingerList,
 } from "../../store/singerList/singerListSlice";
 import SingerList from "./SingerList";
-import { ListContainer, NavContainer } from "./style";
+import { NavContainer } from "./style";
 
-const Singers: React.FC<{}> = (props) => {
+const Singers: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
   const [singer, setSinger] = useState("");
   const [area, setArea] = useState("");

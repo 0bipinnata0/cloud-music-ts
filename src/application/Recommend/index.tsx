@@ -8,8 +8,9 @@ import {
   selectRecommendList,
 } from "../../store/recommendListSlice";
 import { getBannerList, selectBannerList } from "../../store/bannerListSlice";
-import { useAppDispatch, useAppSelector } from "../../store";
 import Loading from "../../baseUI/loading";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
 const Recommend: React.FC<{}> = (props) => {
   const dispatch = useAppDispatch();
   const bannerList = useAppSelector(selectBannerList);

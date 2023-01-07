@@ -62,4 +62,6 @@
 
 #### 添加上下 loading 的动画以及 author 的 image 懒加载
 
-#### 基于 axios 实现防抖，方案来自 https://juejin.cn/post/6968630178163458084#heading-10 
+#### 基于 axios 实现防抖，方案来自 https://juejin.cn/post/6968630178163458084#heading-10
+
+- FIXME: 在 singer 列表页面，下拉会触发多次更新,可以去 redux-toolkit 看看有没有合适的方案
