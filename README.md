@@ -84,3 +84,5 @@
 - npm i --save-dev @types/react-transition-group
 
 ### 进入歌单详情页的 mock 数据页面
+
+### 添加滚动歌单详情时的走马灯的效果

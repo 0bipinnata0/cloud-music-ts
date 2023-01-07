@@ -50,7 +50,7 @@ const Scroll = forwardRef<
     direction: "vertical" | "horizontal";
     click: boolean;
     refresh: boolean;
-    onScroll: (p: unknown) => void;
+    onScroll: (pos: { y: number }) => void;
     pullUp: () => void;
     pullDown: () => void;
     pullUpLoading: boolean;
@@ -95,8 +95,8 @@ const Scroll = forwardRef<
 
   useEffect(() => {
     if (!bScroll || !onScroll) return;
-    bScroll.on("scroll", (scroll: unknown) => {
-      onScroll(scroll);
+    bScroll.on("scroll", (position: { y: number }) => {
+      onScroll(position);
     });
     return () => {
       bScroll.off("scroll");

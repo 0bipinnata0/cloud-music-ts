@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import globalStyle from "../../assets/global-style";
+import { Marquee } from "./style";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -25,15 +26,25 @@ const HeaderContainer = styled.div`
 // 处理函数组件拿不到 ref 的问题，所以用 forwardRef
 const Header = React.forwardRef<
   HTMLDivElement,
-  { handleClick: () => void; children: string }
+  { handleClick: () => void; children: string; isMarquee?: boolean }
 >((props, ref) => {
-  const { handleClick = () => {}, children = "标题" } = props;
+  const {
+    handleClick = () => {},
+    children = "标题",
+    isMarquee = false,
+  } = props;
   return (
     <HeaderContainer ref={ref}>
       <i className="iconfont back" onClick={handleClick}>
         &#xe655;
       </i>
-      <h1>{children}</h1>
+      {isMarquee ? (
+        <Marquee>
+          <h1>{children}</h1>
+        </Marquee>
+      ) : (
+        <h1>{children}</h1>
+      )}
     </HeaderContainer>
   );
 });
