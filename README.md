@@ -82,3 +82,5 @@
 
 - 依赖安装 npm install react-transition-group
 - npm i --save-dev @types/react-transition-group
+
+### 进入歌单详情页的 mock 数据页面
