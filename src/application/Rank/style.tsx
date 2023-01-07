@@ -82,7 +82,7 @@ export const SongContainer = styled.ul`
 export const EnterLoading = styled.div<{
   show?: boolean;
 }>`
-  display: ${(props) => (props.show ? "inherit" : "none")};
+  display: ${(props) => (props.show ? "initial" : "none")};
   position: fixed;
   left: 0;
   right: 0;

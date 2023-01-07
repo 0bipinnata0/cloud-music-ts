@@ -77,3 +77,8 @@
 ### 2. 完成 Rank 数据的渲染
 
 ## recommend 详情页面的开发
+
+## 动画相关
+
+- 依赖安装 npm install react-transition-group
+- npm i --save-dev @types/react-transition-group

@@ -8,7 +8,6 @@ import { Container, EnterLoading } from "./style";
 const Rank: React.FC<{}> = () => {
   const { loading, globalList, officialList } = useRankList();
   let displayStyle = loading ? { display: "none" } : { display: "" };
-  console.info("loading", loading);
   return (
     <Container>
       <Scroll>
