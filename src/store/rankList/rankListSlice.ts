@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { RootState, AppThunk } from "..";
 import { getRankListRequest } from "../../api/request";
 import type { IRank } from "../../api/request/getRankListRequest";

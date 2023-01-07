@@ -1,4 +1,5 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
+import albumDetailSlice from "./albumDetail/albumDetailSlice";
 import bannerListSlice from "./bannerListSlice";
 import categorySlice from "./category/categorySlice";
 import rankListSlice from "./rankList/rankListSlice";
@@ -12,6 +13,7 @@ export const store = configureStore({
     singerList: singerListSlice,
     category: categorySlice,
     rankList: rankListSlice,
+    album: albumDetailSlice,
   },
 });
 

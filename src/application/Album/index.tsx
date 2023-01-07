@@ -6,130 +6,24 @@ import Header from "./../../baseUI/header/index";
 import Scroll from "../../baseUI/scroll";
 import { getCount, getName } from "../../api/utils";
 import globalStyle from "../../assets/global-style";
+import useAlbum from "./hooks/useAlbum";
+import Loading from "../../baseUI/loading";
 
 export const HEADER_HEIGHT = 45;
-//mock 数据
-const currentAlbum = {
-  creator: {
-    avatarUrl:
-      "http://p1.music.126.net/O9zV6jeawR43pfiK2JaVSw==/109951164232128905.jpg",
-    nickname: "浪里推舟",
-  },
-  coverImgUrl:
-    "http://p2.music.126.net/ecpXnH13-0QWpWQmqlR0gw==/109951164354856816.jpg",
-  subscribedCount: 2010711,
-  name: "听完就睡，耳机是天黑以后柔软的梦境",
-  tracks: [
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-    {
-      name: "我真的受伤了",
-      ar: [{ name: "张学友" }, { name: "周华健" }],
-      al: {
-        name: "学友 热",
-      },
-    },
-  ],
-};
+
 const Album = () => {
   const [showStatus, setShowStatus] = useState(true);
+  const { currentAlbum, loading } = useAlbum();
   const handleBack = () => {
     setShowStatus(false);
   };
   const navigate = useNavigate();
   const [title, setTitle] = useState("歌单");
   const [isMarquee, setIsMarquee] = useState(false); // 是否跑马灯
-
   const handleScroll = (pos: { y: number }) => {
+    if (!currentAlbum) {
+      return;
+    }
     let minScrollY = -HEADER_HEIGHT;
     let percent = Math.abs(pos.y / minScrollY);
     let headerDom = headerEl.current!;
@@ -147,6 +41,9 @@ const Album = () => {
     }
   };
   const headerEl = useRef<HTMLDivElement>(null);
+  if (!currentAlbum) {
+    return <></>;
+  }
   return (
     <CSSTransition
       in={showStatus}
@@ -239,6 +136,7 @@ const Album = () => {
             </SongList>
           </div>
         </Scroll>
+        {loading ? <Loading /> : null}
       </Container>
     </CSSTransition>
   );
