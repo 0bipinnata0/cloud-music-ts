@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Scroll from "../scroll/index";
 import globalStyle from "../../assets/global-style";
@@ -48,9 +48,24 @@ const Horizon: React.FC<IHorizon> = ({
   title = "",
   handleClick = () => {},
 }) => {
+  // 加入声明
+  const Category = useRef<HTMLDivElement>(null);
+
+  // 加入初始化内容宽度的逻辑
+  useEffect(() => {
+    const categoryDOM = Category.current;
+    if (!categoryDOM) {
+      return;
+    }
+    const tagElements = categoryDOM.querySelectorAll("span");
+    const totalWidth = Array.from(tagElements)
+      .map(({ offsetWidth }) => offsetWidth)
+      .reduce((totalWidth, current) => totalWidth + current);
+    categoryDOM.style.width = `${totalWidth}px`;
+  }, []);
   return (
     <Scroll direction="horizontal">
-      <div>
+      <div ref={Category}>
         <List>
           <span>{title}</span>
           {list.map((item) => {
