@@ -18,8 +18,12 @@ const Recommend: React.FC<{}> = (props) => {
     useAppSelector(selectRecommendList);
 
   useEffect(() => {
-    dispatch(getBannerList());
-    dispatch(getRecommendList());
+    if (!bannerList.length) {
+      dispatch(getBannerList());
+    }
+    if (!recommendList.length) {
+      dispatch(getRecommendList());
+    }
     //eslint-disable-next-line
   }, []);
 
