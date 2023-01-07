@@ -3,6 +3,7 @@ import Recommend from "../application/Recommend";
 import Singers from "../application/Singers";
 import Rank from "../application/Rank";
 import { Navigate, RouteObject } from "react-router-dom";
+import Album from "../application/Album";
 
 const routes: RouteObject[] = [
   {
@@ -14,15 +15,21 @@ const routes: RouteObject[] = [
         element: <Navigate to="/recommend" />,
       },
       {
-        path: "recommend",
+        path: "/recommend",
         element: <Recommend />,
+        children: [
+          {
+            path: "/recommend/:id",
+            element: <Album />,
+          },
+        ],
       },
       {
-        path: "singers",
+        path: "/singers",
         element: <Singers />,
       },
       {
-        path: "rank",
+        path: "/rank",
         element: <Rank />,
       },
     ],

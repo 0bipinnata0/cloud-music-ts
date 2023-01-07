@@ -1,17 +1,20 @@
 import React, { useEffect } from "react";
-import Slider from "../../components/slider";
-import RecommendList from "../../components/list/RecommendList";
-import { Content } from "./style";
+import { Outlet } from "react-router-dom";
+import Loading from "../../baseUI/loading";
 import Scroll from "../../baseUI/scroll";
+import RecommendList from "../../components/list/RecommendList";
+import Slider from "../../components/slider";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
+import { getBannerList, selectBannerList } from "../../store/bannerListSlice";
 import {
   getRecommendList,
   selectRecommendList,
 } from "../../store/recommendListSlice";
-import { getBannerList, selectBannerList } from "../../store/bannerListSlice";
-import Loading from "../../baseUI/loading";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import useAppSelector from "../../hooks/useAppSelector";
-const Recommend: React.FC<{}> = (props) => {
+import { EnterLoading } from "../Rank/style";
+import { Content } from "./style";
+
+const Recommend: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
   const bannerList = useAppSelector(selectBannerList);
 
@@ -30,13 +33,16 @@ const Recommend: React.FC<{}> = (props) => {
 
   return (
     <Content>
+      <Outlet />
       <Scroll className="list">
         <div>
           <Slider bannerList={bannerList}></Slider>
           <RecommendList recommendList={recommendList}></RecommendList>
         </div>
       </Scroll>
-      {enterLoading === "loading" && <Loading />}
+      <EnterLoading show={enterLoading === "loading"}>
+        <Loading />
+      </EnterLoading>
     </Content>
   );
 };
