@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Slider from "../../components/slider";
-import RecommendList from "../../components/list";
+import RecommendList from "../../components/list/RecommendList";
 import { Content } from "./style";
 import Scroll from "../../baseUI/scroll";
 import {
