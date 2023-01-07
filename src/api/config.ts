@@ -1,19 +1,78 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+const pendingMap = new Map();
 
-// npx NeteaseCloudMusicApi
-export const baseUrl = "http://localhost:3000";
+/**
+ * 生成每个请求唯一的键
+ * @param {*} config
+ * @returns string
+ */
+function getPendingKey(config: AxiosRequestConfig<any>) {
+  let { url, method, params, data } = config;
+  if (typeof data === "string") data = JSON.parse(data); // response里面返回的config.data是个字符串对象
+  return [url, method, JSON.stringify(params), JSON.stringify(data)].join("&");
+}
 
-//axios 的实例及拦截器配置
-const axiosInstance = axios.create({
-  baseURL: baseUrl,
-});
-
-axiosInstance.interceptors.response.use(
-  (res) => res,
-  (err) => {
-    console.log(err, "网络错误");
+/**
+ * 储存每个请求唯一值, 也就是cancel()方法, 用于取消请求
+ * @param {*} config
+ */
+function addPending(config: AxiosRequestConfig<any>) {
+  const pendingKey = getPendingKey(config);
+  config.cancelToken =
+    config.cancelToken ||
+    new axios.CancelToken((cancel) => {
+      if (!pendingMap.has(pendingKey)) {
+        pendingMap.set(pendingKey, cancel);
+      }
+    });
+}
+/**
+ * 删除重复的请求
+ * @param {*} config
+ */
+function removePending(config: AxiosRequestConfig<any>) {
+  const pendingKey = getPendingKey(config);
+  if (pendingMap.has(pendingKey)) {
+    const cancelToken = pendingMap.get(pendingKey);
+    cancelToken(pendingKey);
+    pendingMap.delete(pendingKey);
   }
-);
+}
+// npx NeteaseCloudMusicApi
+const createInstance = () => {
+  const baseUrl = "http://localhost:3000";
+  //axios 的实例及拦截器配置
+  const axiosInstance = axios.create({
+    baseURL: baseUrl,
+    timeout: 10_000,
+  });
+
+  axiosInstance.interceptors.request.use(
+    (config) => {
+      removePending(config);
+      addPending(config);
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+
+  axiosInstance.interceptors.response.use(
+    (response) => {
+      removePending(response.config);
+      return response;
+    },
+    (error) => {
+      console.log(error, "网络错误");
+      error.config && removePending(error.config);
+      return Promise.reject(error);
+    }
+  );
+  return axiosInstance;
+};
+
+const axiosInstance = createInstance();
 
 export { axiosInstance };
 
@@ -56,109 +115,7 @@ export const areaTypes = [
 ];
 
 // 歌手首字母
-export const alphaTypes = [
-  {
-    key: "A",
-    value: "A",
-  },
-  {
-    key: "B",
-    value: "B",
-  },
-  {
-    key: "C",
-    value: "C",
-  },
-  {
-    key: "D",
-    value: "D",
-  },
-  {
-    key: "E",
-    value: "E",
-  },
-  {
-    key: "F",
-    value: "F",
-  },
-  {
-    key: "G",
-    value: "G",
-  },
-  {
-    key: "H",
-    value: "H",
-  },
-  {
-    key: "I",
-    value: "I",
-  },
-  {
-    key: "J",
-    value: "J",
-  },
-  {
-    key: "K",
-    value: "K",
-  },
-  {
-    key: "L",
-    value: "L",
-  },
-  {
-    key: "M",
-    value: "M",
-  },
-  {
-    key: "N",
-    value: "N",
-  },
-  {
-    key: "O",
-    value: "O",
-  },
-  {
-    key: "P",
-    value: "P",
-  },
-  {
-    key: "Q",
-    value: "Q",
-  },
-  {
-    key: "R",
-    value: "R",
-  },
-  {
-    key: "S",
-    value: "S",
-  },
-  {
-    key: "T",
-    value: "T",
-  },
-  {
-    key: "U",
-    value: "U",
-  },
-  {
-    key: "V",
-    value: "V",
-  },
-  {
-    key: "W",
-    value: "W",
-  },
-  {
-    key: "X",
-    value: "X",
-  },
-  {
-    key: "Y",
-    value: "Y",
-  },
-  {
-    key: "Z",
-    value: "Z",
-  },
-];
+
+export const alphaTypes = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  .split("")
+  .map((char) => ({ key: char, value: char }));

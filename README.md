@@ -60,4 +60,6 @@
 
 #### 使用 redux-toolkit 完成歌手列表页
 
-#### 添加上下loading的动画以及author的image懒加载
+#### 添加上下 loading 的动画以及 author 的 image 懒加载
+
+#### 基于 axios 实现防抖，方案来自 https://juejin.cn/post/6968630178163458084#heading-10 
