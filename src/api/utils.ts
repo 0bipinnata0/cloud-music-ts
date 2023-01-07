@@ -8,3 +8,8 @@ export const getCount = (count: number) => {
     return Math.floor(count / 10000000) / 10 + "亿";
   }
 };
+
+export const negateFunc =
+  <T>(fn: (param: T) => boolean) =>
+  (param: T) =>
+    !fn(param);

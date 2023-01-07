@@ -17,6 +17,7 @@ import defaultAvatar from "./singer.png";
 import { List, ListContainer, ListItem } from "./style";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import useAppSelector from "../../hooks/useAppSelector";
+import { EnterLoading } from "../Rank/style";
 
 // 渲染函数，返回歌手列表
 const SingerList: React.FC<{
@@ -96,7 +97,9 @@ const SingerList: React.FC<{
           })}
         </List>
       </Scroll>
-      {enterLoading && <Loading />}
+      <EnterLoading show={enterLoading}>
+        <Loading />
+      </EnterLoading>
     </ListContainer>
   );
 };

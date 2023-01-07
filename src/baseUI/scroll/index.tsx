@@ -33,7 +33,7 @@ const PullUpLoading = styled.div<{
 const PullDownLoading = styled.div<{
   show?: boolean;
 }>`
-  display: ${(props) => (props.show ? undefined : "none")};
+  display: ${(props) => (props.show ? "inherit" : "none")};
   position: absolute;
   left: 0;
   right: 0;

@@ -140,7 +140,7 @@ export interface IRank {
   subscribed?: any;
   creator?: any;
   artists?: any;
-  tracks: Track[];
+  tracks: ITrack[];
   updateFrequency: string;
   backgroundCoverId: number;
   backgroundCoverUrl?: any;
@@ -179,7 +179,7 @@ export interface IRank {
   ToplistType?: string;
 }
 
-interface Track {
+export interface ITrack {
   first: string;
   second: string;
 }
