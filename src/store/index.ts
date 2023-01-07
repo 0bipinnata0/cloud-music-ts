@@ -2,11 +2,13 @@ import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import bannerListSlice from "./bannerListSlice";
 import recommendListSlice from "./recommendListSlice";
+import singerListSlice from "./singerList/singerListSlice";
 
 export const store = configureStore({
   reducer: {
     bannerList: bannerListSlice,
     recommendList: recommendListSlice,
+    singerList: singerListSlice,
   },
 });
 
