@@ -6,6 +6,6 @@ export const NavContainer = styled.div`
   position: fixed;
   top: 95px;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   overflow: hidden;
 `;
