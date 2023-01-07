@@ -1,15 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 import LazyImage from "./LazyImage";
 import defaultAvatar from "./music.png";
 import { ListWrapper, ListItem, List } from "./style";
 import { getCount } from "../../api/utils";
+import type { IRecommend } from "../../store/recommendListSlice";
 
-export type IRecommend = {
-  id: number;
-  picUrl: string;
-  playCount: number;
-  name: string;
-};
 const RecommendList: React.FC<{
   recommendList: IRecommend[];
 }> = ({ recommendList }) => {
@@ -24,6 +19,9 @@ const RecommendList: React.FC<{
                 {/* 加此参数可以减小请求的图片资源大小 */}
                 <LazyImage
                   src={item.picUrl + "?param=300x300"}
+                  width="100%"
+                  height="100%"
+                  alt="music"
                   fallback={
                     <img
                       width="100%"

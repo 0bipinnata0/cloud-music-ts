@@ -7,9 +7,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Pagination, Autoplay } from "swiper";
+import { IBanner } from "../../store/bannerListSlice";
 
 // https://swiperjs.com/react
-const Slider: React.FC<{ bannerList: { imageUrl: string }[] }> = (props) => {
+const Slider: React.FC<{ bannerList: IBanner[] }> = (props) => {
   const { bannerList } = props;
 
   return (

@@ -2,7 +2,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from ".";
 import { getBannerRequest } from "../api/request";
 
-const initialState = {
+export type IBanner = {
+  imageUrl: string;
+};
+
+type IBannerState = {
+  value: IBanner[];
+  status: "idle" | "loading";
+};
+
+const initialState: IBannerState = {
   value: [],
   status: "idle",
 };

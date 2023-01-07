@@ -2,7 +2,18 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppThunk, RootState } from ".";
 import { getRecommendListRequest } from "../api/request";
 
-const initialState = {
+export type IRecommend = {
+  id: number;
+  picUrl: string;
+  playCount: number;
+  name: string;
+};
+type IRecommendState = {
+  value: IRecommend[];
+  status: "idle" | "loading";
+};
+
+const initialState: IRecommendState = {
   value: [],
   status: "idle",
 };
@@ -51,8 +62,7 @@ export const { change } = recommendListSlice.actions;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 
-export const selectRecommendList = (state: RootState) =>
-  state.recommendList.value;
+export const selectRecommendList = (state: RootState) => state.recommendList;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

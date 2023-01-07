@@ -9,16 +9,20 @@ import {
 } from "../../store/recommendListSlice";
 import { getBannerList, selectBannerList } from "../../store/bannerListSlice";
 import { useAppDispatch, useAppSelector } from "../../store";
+import Loading from "../../baseUI/loading";
 const Recommend: React.FC<{}> = (props) => {
   const dispatch = useAppDispatch();
   const bannerList = useAppSelector(selectBannerList);
-  const recommendList = useAppSelector(selectRecommendList);
+
+  const { value: recommendList, status: enterLoading } =
+    useAppSelector(selectRecommendList);
 
   useEffect(() => {
     dispatch(getBannerList());
     dispatch(getRecommendList());
     //eslint-disable-next-line
   }, []);
+
   return (
     <Content>
       <Scroll className="list">
@@ -27,6 +31,7 @@ const Recommend: React.FC<{}> = (props) => {
           <RecommendList recommendList={recommendList}></RecommendList>
         </div>
       </Scroll>
+      {enterLoading === "loading" && <Loading />}
     </Content>
   );
 };
