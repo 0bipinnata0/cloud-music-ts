@@ -1,14 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
+import LazyImage from "./LazyImage";
+import defaultAvatar from "./music.png";
 import { ListWrapper, ListItem, List } from "./style";
 import { getCount } from "../../api/utils";
 
+export type IRecommend = {
+  id: number;
+  picUrl: string;
+  playCount: number;
+  name: string;
+};
 const RecommendList: React.FC<{
-  recommendList: Array<{
-    id: number;
-    picUrl: string;
-    playCount: number;
-    name: string;
-  }>;
+  recommendList: IRecommend[];
 }> = ({ recommendList }) => {
   return (
     <ListWrapper>
@@ -19,11 +22,16 @@ const RecommendList: React.FC<{
             <ListItem key={item.id + index}>
               <div className="img_wrapper">
                 {/* 加此参数可以减小请求的图片资源大小 */}
-                <img
+                <LazyImage
                   src={item.picUrl + "?param=300x300"}
-                  width="100%"
-                  height="100%"
-                  alt="music"
+                  fallback={
+                    <img
+                      width="100%"
+                      height="100%"
+                      src={defaultAvatar}
+                      alt="music"
+                    />
+                  }
                 />
                 <div className="play_count">
                   <i className="iconfont play">&#xe885;</i>

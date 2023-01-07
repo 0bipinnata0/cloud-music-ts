@@ -39,3 +39,5 @@
 ### 滚动组件
 
 ## 网络请求并且通过 redux 连入数据
+
+## 实现懒加载图片组件，使用方案来自https://blog.renwangyu.com/2022/01/28/react-suspense-lazy-img/
