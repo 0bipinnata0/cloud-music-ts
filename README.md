@@ -124,3 +124,5 @@
 > > changeCurrentIndex,
 >
 > > changeShowPlayList,
+
+### player hooks 数据的封装
