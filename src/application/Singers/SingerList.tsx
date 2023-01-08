@@ -80,10 +80,7 @@ const SingerList: React.FC<{
         <List>
           {singerList.map((item) => {
             return (
-              <ListItem
-                key={item.id}
-                onClick={() => item.accountId && enterDetail(item.accountId)}
-              >
+              <ListItem key={item.id} onClick={() => enterDetail(item.id)}>
                 <div className="img_wrapper">
                   <LazyImage
                     src={item.picUrl + "?param=300x300"}
