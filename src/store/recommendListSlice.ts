@@ -32,7 +32,7 @@ export const getRecommendAsync = createAsyncThunk(
   }
 );
 
-export const recommendListSlice = createSlice({
+const recommendListSlice = createSlice({
   name: "recommend",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions

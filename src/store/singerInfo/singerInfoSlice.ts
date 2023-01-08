@@ -25,7 +25,7 @@ const getCurrentSingerInfoAsync = createAsyncThunk<
   return response.data;
 });
 
-export const singerInfoDetailSlice = createSlice({
+const singerInfoDetailSlice = createSlice({
   name: "singerInfo",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions

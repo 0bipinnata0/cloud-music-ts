@@ -73,7 +73,7 @@ const refreshMoreSingerListAsync = createAsyncThunk<
   }
 );
 
-export const singerListSlice = createSlice({
+const singerListSlice = createSlice({
   name: "singer",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions

@@ -20,7 +20,7 @@ const changeCurrentAlbumAsync = createAsyncThunk<IPlaylist, string>(
   }
 );
 
-export const albumDetailSlice = createSlice({
+const albumDetailSlice = createSlice({
   name: "album",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions

@@ -9,7 +9,7 @@ const initialState: ICategoryState = {
   alpha: "",
 };
 
-export const categoryListSlice = createSlice({
+const categoryListSlice = createSlice({
   name: "category",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions

@@ -21,14 +21,11 @@ const initialState: IBannerState = {
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const getBannerAsync = createAsyncThunk(
-  "banner/fetchBanner",
-  async () => {
-    const response = await getBannerRequest();
-    // The value we return becomes the `fulfilled` action payload
-    return response.data.banners;
-  }
-);
+const getBannerAsync = createAsyncThunk("banner/fetchBanner", async () => {
+  const response = await getBannerRequest();
+  // The value we return becomes the `fulfilled` action payload
+  return response.data.banners;
+});
 
 export const bannerListSlice = createSlice({
   name: "banner",

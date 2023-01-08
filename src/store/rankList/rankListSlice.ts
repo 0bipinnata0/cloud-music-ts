@@ -21,7 +21,7 @@ const changeRankListAsync = createAsyncThunk<IRank[], void>(
   }
 );
 
-export const rankListSlice = createSlice({
+const rankListSlice = createSlice({
   name: "rank",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions

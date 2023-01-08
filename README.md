@@ -101,8 +101,26 @@
 
 - 添加滚动缩放的效果
 
-- 修复进入singer详情页的id参数问题
+- 修复进入 singer 详情页的 id 参数问题
 
-- 使用真实数据替换mock
+- 使用真实数据替换 mock
 
-- 修复service传参错误，导致key失效
+- 修复 service 传参错误，导致 key 失效
+
+## Player 数据层的添加
+
+> > changeCurrentSong,
+>
+> > changeFullScreen,
+>
+> > changePlayingState,
+>
+> > changeSequencePlayList,
+>
+> > changePlayList,
+>
+> > changePlayMode,
+>
+> > changeCurrentIndex,
+>
+> > changeShowPlayList,
