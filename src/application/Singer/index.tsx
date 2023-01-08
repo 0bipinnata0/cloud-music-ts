@@ -2,9 +2,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { CSSTransition } from "react-transition-group";
 import Header from "../../baseUI/header";
+import Loading from "../../baseUI/loading";
 import Scroll, { ScrollElement } from "../../baseUI/scroll";
 import { HEADER_HEIGHT } from "../Album";
+import { EnterLoading } from "../Rank/style";
 import SongsList from "../SongsList";
+import useSingerInfo from "./hooks/useSingerInfo";
 import {
   BgLayer,
   CollectButton,
@@ -13,24 +16,8 @@ import {
   SongListWrapper,
 } from "./style";
 
-const artist = {
-  picUrl:
-    "https://p2.music.126.net/W__FCWFiyq0JdPtuLJoZVQ==/109951163765026271.jpg",
-  name: "薛之谦",
-  hotSongs: new Array(20).fill(1).map(() => {
-    return JSON.parse(
-      JSON.stringify({
-        name: "我好像在哪见过你",
-        ar: [{ name: "薛之谦" }],
-        al: {
-          name: "薛之谦专辑",
-        },
-      })
-    );
-  }),
-};
-
-const Singer: React.FC<{}> = (props) => {
+const Singer: React.FC<{}> = () => {
+  const { artist, hotSongs, loading } = useSingerInfo();
   const [showStatus, setShowStatus] = useState(true);
   const navigate = useNavigate();
 
@@ -61,7 +48,7 @@ const Singer: React.FC<{}> = (props) => {
       songScroll.current.refresh();
     }
     //eslint-disable-next-line
-  }, []);
+  }, [loading]);
 
   const setShowStatusFalse = useCallback(() => {
     setShowStatus(false);
@@ -107,6 +94,9 @@ const Singer: React.FC<{}> = (props) => {
       }
     }
   }, []);
+  if (!artist) {
+    return null;
+  }
   return (
     <CSSTransition
       in={showStatus}
@@ -130,9 +120,14 @@ const Singer: React.FC<{}> = (props) => {
         <BgLayer ref={layer} />
         <SongListWrapper ref={songScrollWrapper}>
           <Scroll ref={songScroll} onScroll={handleScroll}>
-            <SongsList songs={artist.hotSongs} showCollect={false} />
+            <SongsList songs={hotSongs} showCollect={false} />
           </Scroll>
         </SongListWrapper>
+        {loading ? (
+          <EnterLoading style={{ zIndex: 100 }}>
+            <Loading />
+          </EnterLoading>
+        ) : null}
       </Container>
     </CSSTransition>
   );

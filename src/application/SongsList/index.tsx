@@ -1,6 +1,7 @@
 import React from "react";
 import { SongsContainer, SongItemContainer } from "./style";
 import { getName } from "../../api/utils";
+import type { IHotSong } from "../../api/request/getSingerInfoRequest";
 
 const Collect: React.FC<{
   count: number;
@@ -16,21 +17,9 @@ const Collect: React.FC<{
     </div>
   );
 };
-type ISong = {
-  id: string;
-  name: string;
-  ar: { name: string }[];
-  artists: { name: string }[];
-  album: {
-    name: string;
-  };
-  al: {
-    name: string;
-  };
-};
 
 const SongItem: React.FC<{
-  item: ISong;
+  item: IHotSong;
   offset: number;
   selectItem: React.MouseEventHandler<Element>;
 }> = ({ item, selectItem, offset }) => {
@@ -40,8 +29,8 @@ const SongItem: React.FC<{
       <div className="info">
         <span>{item.name}</span>
         <span>
-          {item.ar ? getName(item.ar) : getName(item.artists)} -{" "}
-          {item.al ? item.al.name : item.album.name}
+          {getName(item.ar)}
+          {item.al.name}
         </span>
       </div>
     </li>
@@ -51,7 +40,7 @@ const SongItem: React.FC<{
 const SongsList = React.forwardRef<
   HTMLDivElement,
   {
-    songs: ISong[];
+    songs: IHotSong[];
     showCollect: boolean;
     collectCount?: number;
     showBackground?: boolean;
