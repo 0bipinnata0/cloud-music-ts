@@ -1,8 +1,22 @@
 import usePlayer from "./hooks/usePlayer";
+import MiniPlayer from "./miniPlayer";
 
 const Player = () => {
   const data = usePlayer();
-  return <div>Player</div>;
+  const currentSong = {
+    al: {
+      picUrl:
+        "https://p1.music.126.net/JL_id1CFwNJpzgrXwemh4Q==/109951164172892390.jpg",
+    },
+    name: "木偶人",
+    ar: [{ name: "薛之谦" }],
+  };
+  return (
+    <div>
+      {/* @ts-ignore */}
+      <MiniPlayer song={currentSong} />
+    </div>
+  );
 };
 
 export default Player;

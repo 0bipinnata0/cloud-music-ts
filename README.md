@@ -126,3 +126,9 @@
 > > changeShowPlayList,
 
 ### player hooks 数据的封装
+
+
+
+# 3. 2023/01/09
+
+## mini播放器的实现

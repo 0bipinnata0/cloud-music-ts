@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import Player from "../../components/player";
 import { Tab, TabItem, Top } from "./style";
 
 const Home: React.FC<{}> = (props) => {
@@ -37,6 +38,7 @@ const Home: React.FC<{}> = (props) => {
         </NavLink>
       </Tab>
       <Outlet />
+      <Player />
     </div>
   );
 };
