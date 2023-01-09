@@ -36,6 +36,7 @@ export const NormalPlayerContainer = styled.div`
 export const Top = styled.div`
   position: relative;
   margin-bottom: 25px;
+  width: 100%;
   .back {
     position: absolute;
     top: 0;

@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "..";
+import { TrackDetail } from "../../api/request/getAlbumDetailRequest";
 
 type IPlayerState = {
   fullScreen: boolean;
   playing: boolean;
-  sequencePlayList: never[];
-  playList: never[];
+  sequencePlayList: TrackDetail[];
+  playList: TrackDetail[];
   mode: PlayMode;
   currentIndex: number;
   showPlayList: boolean;
-  currentSong: {};
+  currentSong?: TrackDetail;
 };
 export enum PlayMode {
   sequence,
@@ -24,7 +25,7 @@ const initialState: IPlayerState = {
   mode: PlayMode.sequence, // 播放模式
   currentIndex: -1, // 当前歌曲在播放列表的索引位置
   showPlayList: false, // 是否展示播放列表
-  currentSong: {},
+  currentSong: undefined,
 };
 
 const playerSlice = createSlice({
@@ -33,7 +34,7 @@ const playerSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     changeCurrentSong: (state, action: PayloadAction<number>) => {
-      state.currentSong = action.payload;
+      state.currentSong = state.sequencePlayList[action.payload];
     },
     changeFullScreen: (state, action: PayloadAction<boolean>) => {
       state.fullScreen = action.payload;
@@ -41,10 +42,10 @@ const playerSlice = createSlice({
     changePlayingState: (state, action: PayloadAction<boolean>) => {
       state.playing = action.payload;
     },
-    changeSequencePlayList: (state, action: PayloadAction<[]>) => {
+    changeSequencePlayList: (state, action: PayloadAction<TrackDetail[]>) => {
       state.sequencePlayList = action.payload;
     },
-    changePlayList: (state, action: PayloadAction<[]>) => {
+    changePlayList: (state, action: PayloadAction<TrackDetail[]>) => {
       state.playList = action.payload;
     },
     changePlayMode: (state, action: PayloadAction<PlayMode>) => {

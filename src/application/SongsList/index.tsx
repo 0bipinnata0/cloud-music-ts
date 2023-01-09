@@ -2,6 +2,7 @@ import React from "react";
 import { SongsContainer, SongItemContainer } from "./style";
 import { getName } from "../../api/utils";
 import type { IHotSong } from "../../api/request/getSingerInfoRequest";
+import usePlayer from "../../components/player/hooks/usePlayer";
 
 const Collect: React.FC<{
   count: number;
@@ -54,15 +55,17 @@ const SongsList = React.forwardRef<
   } = props;
 
   const totalCount = songs.length;
+  const { playCurrent } = usePlayer();
 
-  const selectItem: React.MouseEventHandler<Element> = (evt) => {
-    console.log(evt);
+  const selectItem = (index: number) => {
+    // @ts-ignore
+    playCurrent(songs, index);
   };
 
   return (
     <SongsContainer ref={refs} showBackground={showBackground}>
       <div className="first_line">
-        <div className="play_all" onClick={selectItem}>
+        <div className="play_all">
           <i className="iconfont">&#xe6e3;</i>
           <span>
             播放全部 <span className="sum">(共 {totalCount} 首)</span>
@@ -74,7 +77,8 @@ const SongsList = React.forwardRef<
             <SongItem
               item={song}
               offset={index}
-              selectItem={selectItem}
+              //      @ts-ignore
+              selectItem={() => selectItem(index)}
               key={index}
             />
           ))}

@@ -1,9 +1,11 @@
 import { getCount, getName } from "../../api/utils";
+import usePlayer from "../../components/player/hooks/usePlayer";
 import useAlbum from "./hooks/useAlbum";
 import { SongList, SongItem } from "./style";
 
 const AlbumSongList = () => {
   const { currentAlbum } = useAlbum();
+  const { playCurrent } = usePlayer();
   if (!currentAlbum) {
     return null;
   }
@@ -25,7 +27,12 @@ const AlbumSongList = () => {
       <SongItem>
         {currentAlbum.tracks.map((item, index) => {
           return (
-            <li key={index}>
+            <li
+              key={index}
+              onClick={() => {
+                playCurrent(currentAlbum.tracks, index);
+              }}
+            >
               <span className="index">{index + 1}</span>
               <div className="info">
                 <span>{item.name}</span>

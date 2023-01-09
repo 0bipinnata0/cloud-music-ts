@@ -1,3 +1,5 @@
+import { TrackDetail } from "../../../api/request/getAlbumDetailRequest";
+import { ITrack } from "../../../api/request/getRankListRequest";
 import useAppDispatch from "../../../hooks/useAppDispatch";
 import useAppSelector from "../../../hooks/useAppSelector";
 import {
@@ -7,6 +9,7 @@ import {
   changePlayingState,
   changePlayList,
   changePlayMode,
+  changeSequencePlayList,
   changeShowPlayList,
   PlayMode,
   selectPlayer,
@@ -14,7 +17,8 @@ import {
 
 const usePlayer = () => {
   const dispatch = useAppDispatch();
-  const a = useAppSelector(selectPlayer);
+  const player = useAppSelector(selectPlayer);
+
   const togglePlayingDispatch = (data: boolean) => {
     dispatch(changePlayingState(data));
   };
@@ -33,11 +37,22 @@ const usePlayer = () => {
   const changeModeDispatch = (mode: PlayMode) => {
     dispatch(changePlayMode(mode));
   };
-  const changePlayListDispatch = (data: []) => {
+  const changePlayListDispatch = (data: TrackDetail[]) => {
     dispatch(changePlayList(data));
   };
+  const changeSequencePlayListDispatch = (data: TrackDetail[]) => {
+    dispatch(changeSequencePlayList(data));
+  };
+
+  const playCurrent = (list: TrackDetail[], index: number) => {
+    changePlayListDispatch(list);
+    changeSequencePlayListDispatch(list);
+    changeCurrentIndexDispatch(index);
+    changeCurrentDispatch(index);
+  };
   return {
-    ...a,
+    ...player,
+    playCurrent,
     togglePlayingDispatch,
     toggleFullScreenDispatch,
     togglePlayListDispatch,
@@ -45,6 +60,7 @@ const usePlayer = () => {
     changeCurrentDispatch,
     changeModeDispatch,
     changePlayListDispatch,
+    changeSequencePlayListDispatch,
   };
 };
 export default usePlayer;

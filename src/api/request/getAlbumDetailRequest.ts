@@ -83,7 +83,7 @@ export interface IPlaylist {
   subscribers: Subscriber[];
   subscribed: boolean;
   creator: Creator;
-  tracks: Track[];
+  tracks: TrackDetail[];
   trackIds: TrackId[];
   shareCount: number;
   commentCount: number;
@@ -100,7 +100,7 @@ interface TrackId {
   rcmdReason: string;
 }
 
-interface Track {
+export interface TrackDetail {
   name: string;
   id: number;
   pst: number;
