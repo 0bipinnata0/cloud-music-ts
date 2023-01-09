@@ -1,5 +1,6 @@
 import usePlayer from "./hooks/usePlayer";
 import MiniPlayer from "./miniPlayer";
+import NormalPlayer from "./normalPlayer";
 
 const Player = () => {
   const data = usePlayer();
@@ -15,6 +16,7 @@ const Player = () => {
     <div>
       {/* @ts-ignore */}
       <MiniPlayer song={currentSong} />
+      <NormalPlayer song={currentSong} />
     </div>
   );
 };
